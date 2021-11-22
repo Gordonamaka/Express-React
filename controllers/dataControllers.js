@@ -1,7 +1,9 @@
 const request = require("request");
+const dbParams = require("../lib/db");
 
 exports.dataController = (req, res) => {
   // replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
+  
   let url =
     "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=FAGS590EYBXES5QC";
 
@@ -18,11 +20,18 @@ exports.dataController = (req, res) => {
         console.log("Status:", res.statusCode);
       } else {
         // data is successfully parsed as a JSON object:
-        console.log(Object.keys(data));
-        
+        console.log(data);
       }
     }
   );
   return res.json({smack})
 };
+
+const insertStock = (stock) => {
+//write a few seeds to test with
+//iterate through the object (very similar to selectors from schedulers)
+
+  
+}
+
 
