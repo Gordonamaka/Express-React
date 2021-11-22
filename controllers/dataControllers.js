@@ -18,11 +18,11 @@ exports.dataController = (req, res) => {
         console.log("Status:", res.statusCode);
       } else {
         // data is successfully parsed as a JSON object:
-        console.log(data);
+        console.log(Object.keys(data));
       }
     }
   );
-
-  return res.json({response})
+  return res.json({data})
 
 };
+
