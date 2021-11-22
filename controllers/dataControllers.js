@@ -5,7 +5,7 @@ exports.dataController = (req, res) => {
   let url =
     "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=FAGS590EYBXES5QC";
 
-  const data = request.get(
+  const smack = request.get(
     {
       url: url,
       json: true,
@@ -19,10 +19,10 @@ exports.dataController = (req, res) => {
       } else {
         // data is successfully parsed as a JSON object:
         console.log(Object.keys(data));
+        
       }
     }
   );
-  return res.json({data})
-
+  return res.json({smack})
 };
 
