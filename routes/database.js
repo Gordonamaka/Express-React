@@ -7,14 +7,14 @@ const pool = new Pool({
   database: 'process.env.DB_NAME'
 });
 
-//// Stocks
+/// Stocks
 
 /**
- * Add a new set of timeseries stock data to the database.
- * @param {{name: string, password: string, email: string}} user
+ * Daily Adjusted Stock Data
+ * @param {{timeseries: string, ticker: string, lastRefreshed: }} dailyStockData
  * @return {Promise<{}>} A promise to the user.
  */
-const addStock =  function(user) {
+const addDailyStockData =  function(user) {
   return pool
     .query(`
     INSERT INTO users (name, email, password)
