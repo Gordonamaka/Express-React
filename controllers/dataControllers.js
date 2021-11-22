@@ -23,6 +23,6 @@ exports.dataController = (req, res) => {
     }
   );
 
-  return res.json({response})
+  return res.json({data})
 
 };
