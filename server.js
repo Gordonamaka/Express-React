@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/users/", require("./routes/usersRoute"));
 
-app.use("/data/", require("./routes/dataRoute"));
+app.use("/api/", require("./routes/apiRoute"));
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
