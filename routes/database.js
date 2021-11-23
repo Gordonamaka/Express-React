@@ -2,10 +2,10 @@ const { response } = require("express");
 const { Pool } = require("pg");
 
 const pool = new Pool({
-  user: "process.env.DB_USER",
-  password: "process.env.DB_PASS",
-  host: "process.env.DB_HOST",
-  database: "process.env.DB_NAME",
+  user: "labber",
+  password: "labber",
+  host: "localhost",
+  database: "upswing",
 });
 
 /// Stocks
@@ -20,7 +20,7 @@ exports.addDailyStockData = function (ticker, interval, time, intervalData) {
   return pool
     .query(
       `
-      INSERT INTO daily_stock_data (ticker, interval, time, open, high, low, close, adjusted_close, volume, dividend_amount, split coefficient)
+      INSERT INTO daily_stock_data (ticker, interval, time, open, high, low, close, adjusted_close, volume, dividend_amount, split_coefficient)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
       RETURNING *;
       `,
