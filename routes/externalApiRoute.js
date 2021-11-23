@@ -17,6 +17,6 @@ exports.fetchStockData = () => {
     const data = dailyParser(res[0])
     console.log(data);
   }).catch((error) => {
-    throw new Error(error);
+    console.log(error);
   });
 };
