@@ -1,48 +1,50 @@
 const express = require('express');
 const router = express();
 const database = require('./database');
-//const cookieSession = require('cookie-session');
+const { Pool } = require("pg");
+const { route } = require('./aboutPageRoute');
 
-/*router.use(cookieSession({
-  name: 'session',
-  keys: ['key1', 'key2']
-})); */
+const pool = new Pool({
+  user: "labber",
+  password: "labber",
+  host: "localhost",
+  database: "upswing",
+});
 
 router.get('/', (req, res) => {
-  console.log('1st one good')
-//console.log('Cookies: ', req.cookies['users.id'])
-//const user_id = req.cookies['users.id'];
-//const templateVars = {user_id};
-  // cookie-session
-  //req.session.user_id = req.params.id;
-  // send the user somewhere
-  res.render('login');
+  let usersquery = `SELECT * FROM users`;
+      pool.query(usersquery)
+        .then(data => {
+          const usersData = data.rows;
+          res.json({ data: usersData });
+          console.log('boom!')
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
+        return router;
 });
 
-router.get("/login/:userid", (req, res) => {
-  req.session.user_id = req.params.userid;
-  res.redirect("/");
+router.post("/", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const values = [email, password];
+  if (email === '' || password === '') {
+    res.send("Please enter your email and password!");
+  } else {
+    db.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, values)
+      .then(data => {
+        res.json('users.id', data.rows[0]['id']);
+        console.log('letskettit');
+      })
+      .catch(err => {
+        console.log(err.message);
+        res.send("Invalid email or password");
+      });
+  }
+  return router;
 });
-
-// Login user
-router.post("/login", (req, res) => {
-  let email = req.body.email;
-  let password = req.body.password;
-
-  // Look for the user
-  database.getUserWithEmail(email)
-    .then(user => {
-      console.log(user);
-      // Correct username and password, set the cookie, redirect to url list
-      req.session.user_id = user.id;
-      res.redirect("/");
-    });
-});
-
-router.get('/logout', (req, res) => {
-  req.session.user_id = null;
-  res.redirect("/");
-});
-
-
+  
 module.exports = router;

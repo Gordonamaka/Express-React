@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 
-const Home = props => {
+const Hotlist = props => {
     useEffect(() => {
-      axios.get('http://localhost:3001')
+      axios.get('http://localhost:3001/api/hotlist')
         .then(res => setState(res.data))
     }, [])
 
@@ -13,9 +13,9 @@ const Home = props => {
     <div>
       Home, fufu flakes
       <p>{state}
-      HAHAHAHAHAHAHAHAHAHA! We lit!!!</p>
+      going hot as hell</p>
     </div>
  )
 };
 
-export default Home;
+export default Hotlist;

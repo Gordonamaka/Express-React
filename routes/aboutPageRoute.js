@@ -3,9 +3,8 @@ const router = express();
 const database = require('./database');
 
 router.get("/", (req,res) => {
-  //const templateVars = req.body;
-  res.render("about");
-  console.log("we out here")
+  
+  res.json("about page about to have some NICE NICE features");
 });
 
 module.exports = router;

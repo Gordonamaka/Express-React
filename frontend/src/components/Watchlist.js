@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 
-const Home = props => {
+const Watchlist = props => {
     useEffect(() => {
-      axios.get('http://localhost:3001')
+      axios.get('http://localhost:3001/api/watchlist')
         .then(res => setState(res.data))
     }, [])
 
@@ -18,4 +18,4 @@ const Home = props => {
  )
 };
 
-export default Home;
+export default Watchlist;

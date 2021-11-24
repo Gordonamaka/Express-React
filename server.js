@@ -34,7 +34,27 @@ app.use('/api/login', loginRoute);
 
 //homepage endpoint
 const homepageRoute = require("./routes/homePageRoute");
-app.use('/', homepageRoute)
+app.use('/', homepageRoute);
+
+//hotlist endpoint
+const hotlistRoute = require("./routes/hotlistPageRoute");
+app.use('/api/hotlist', hotlistRoute);
+
+//watchlist endpoint
+const watchlistRoute = require("./routes/watchlistRoute");
+app.use('/api/watchlist', watchlistRoute);
+
+//stock screen endpoint
+const stockScreenRoute = require("./routes/stockScreenPageRoute");
+app.use('/api/stockscreen', stockScreenRoute);
+
+//stock predicting endpoint
+const stockPredictRoute = require('./routes/stockPredictionRoute');
+app.use('/api/stock-predict', stockPredictRoute);
+
+//register endpoint 
+const registerRoute = require("./routes/registerRoute");
+app.use('/api/register', registerRoute);
 
 app.use("/api/", require("./routes/apiRoute"));
 
