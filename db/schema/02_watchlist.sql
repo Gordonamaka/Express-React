@@ -5,4 +5,4 @@ CREATE TABLE watchlist (
   stock_id INTEGER REFERENCES daily_stock_data(id) NOT NULL
 );
 
-/* ticker VARCHAR REFERENCES daily_stock_data(ticker) NOT NULL */
+/* ticker VARCHAR REFERENCES daily_stock_data(ticker) NOT NULL WE NEED TO LINK THE WATCH LIST WITH THE USER_ID*/

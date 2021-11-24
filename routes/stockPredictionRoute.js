@@ -4,7 +4,7 @@ const database = require('./database');
 
 router.get("/", (req,res) => {
   
-  res.json("predicting all the great!");
+  res.json("Predicting all an upcoming bull-market!");
 });
 
 module.exports = router;
