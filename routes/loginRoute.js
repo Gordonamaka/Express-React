@@ -12,11 +12,15 @@ const pool = new Pool({
 });
 
 router.get('/', (req, res) => {
+  console.log('Cookies: ', req.session['users.id'])
+  const user_id = req.session['users.id'];
+  const templateVars = {user_id};
+  console.log(templateVars)
   let usersquery = `SELECT * FROM users`;
       pool.query(usersquery)
         .then(data => {
           const usersData = data.rows;
-          res.json({ data: usersData });
+          res.json({ usersData, templateVars });
           console.log('boom!')
         })
         .catch(err => {
