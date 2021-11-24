@@ -27,9 +27,7 @@ const database = require("./routes/database")
 
 // API endpoint - /api/user
 const userRoutes = require("./routes/usersRoute");
-const userRouter = express.Router();
-userRoutes(userRouter, database);
-app.use('/api/users', userRouter);
+app.use('/api/users', userRoutes);
 
 // API endpoint - /api/about
 const aboutRoutes = require("./routes/aboutPageRoute");
@@ -65,6 +63,7 @@ app.use('/api/register', registerRoute);
 
 app.use("/api/", require("./routes/apiRoute"));
 
+// Move this to an independent route
 app.get("/", (req, res) => {
   const user_id = req.session['users.id'];
   console.log(user_id);

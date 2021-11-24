@@ -8,7 +8,6 @@ import Register from './components/Register';
 import Hotlist from './components/Hotlist';
 import Stockscreen from './components/Stockscreen';
 import StockPredict from './components/Stockpredict';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import MyForm from './MyForm';
 
 function App() {
