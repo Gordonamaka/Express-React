@@ -10,7 +10,7 @@ exports.dailyDbInsertLooper = function (data) {
     const time = timeValues[x];
     const intervalData = data["Time Series (Daily)"][time];
 
-    // console.log("ticker", ticker);
+    //console.log("ticker", ticker);
     // console.log("interval", interval);
     // console.log("time", time);
     // console.log("ID", intervalData);
