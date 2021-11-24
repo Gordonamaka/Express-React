@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -9,14 +8,22 @@ const db = new Pool(dbParams);
 db.connect();
 const PORT = process.env.PORT || 3001;
 const app = express();
+const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
+
 app.use(cors());
-app.set('view engine', 'ejs');
-
-
-const database = require("./routes/database")
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+//cookie-session setting key
+app.use(cookieSession({
+  name: 'session',
+  keys: ['KeyBladeSora']
+}))
+
+//call to database.js
+const database = require("./routes/database")
 
 // API endpoint - /api/user
 const userRoutes = require("./routes/usersRoute");
@@ -57,6 +64,28 @@ const registerRoute = require("./routes/registerRoute");
 app.use('/api/register', registerRoute);
 
 app.use("/api/", require("./routes/apiRoute"));
+
+app.get("/", (req, res) => {
+  const user_id = req.session['users.id'];
+  console.log(user_id);
+  console.log(typeof user_id);
+  tempVar = {user_id};
+
+  //if (user_id !== 'undefined' && user_id !== undefined)
+    const values = [user_id];
+    db.query(`SELECT * FROM users`)
+    .then((data)=>{
+      const user_email = data.rows[0]['users.email'];
+      tempVar.user_email = user_email;
+    res.json({ tempVar});
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  });
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

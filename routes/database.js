@@ -51,17 +51,3 @@ exports.addDailyStockData = function (ticker, interval, time, intervalData) {
  * @param {*} user
  * @returns newly created user
  */
- exports.addUser = function(user) {
-
-  return pool.query(`
-    INSERT INTO users (first_name, last_name, email, password)
-    VALUES ($1, $2, $3, $4)
-    RETURNING *;
-  `, [user.first_name, user.last_name, user.email, user.password])
-    .then((result) => {
-      return (result.rows[0]);
-    })
-    .catch((err) => {
-      console.log("addUser error = " + err.message);
-    });
-};
