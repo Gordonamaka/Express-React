@@ -63,6 +63,7 @@ app.use('/api/register', registerRoute);
 
 app.use("/api/", require("./routes/apiRoute"));
 
+// Move this to an independent route
 app.get("/", (req, res) => {
   const user_id = req.session['users.id'];
   console.log(user_id);
