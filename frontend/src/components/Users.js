@@ -1,24 +1,18 @@
 import React, {useState, useEffect} from "react";
 
-function Users() {
-  const [users, setUsers] = useState([]);
+function Users(props) {
+ 
+  const user = props.user
 
-  useEffect(() => {
-    fetch("http://localhost:3001/users/").then(res => {
-      console.log(res)
-      if(res.ok) {
-        return res.json()
-      }
-    }).then(jsonRes => {
-        setUsers(jsonRes.usersList)
-      }).catch(err => {
-        console.log(err)
-      })
-  }, [])
-
+  // Possibly show list of Watchlist stocks
   return ( 
   <div>
-    {users.map(user => <li>{user}</li>)}
+    <p className="UserInfo">
+    <div>Email: {user.email}</div>
+    <div>First Name: {user.first_name}  </div>
+    <div>Last Name: {user.last_name}  </div>
+    <div>Username: {user.usernmae}  </div>
+    </p>
   </div>
   )
 }
