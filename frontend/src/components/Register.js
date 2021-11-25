@@ -5,11 +5,6 @@ export default function Reg() {
   const [usernameReg, setUsernameReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const [loginStatus, setLoginStatus] = useState(false);
-
   axios.defaults.withCredentials = true;
 
   const register = () => {
@@ -23,70 +18,24 @@ export default function Reg() {
       });
   };
 
-  const login = () => {
-    axios
-      .post("http://localhost:3001/api/login", {
-        username: username,
-        password: password,
-      })
-      .then((response) => {
-        if (!response.data.message) {
-          setLoginStatus(false);
-        } else {
-          setLoginStatus(true);
-        }
-      });
-  };
-
-  useEffect(() => {
-    axios.get("http://localhost:3001/api/login").then((response) => {
-      if (response.data.loggedIn === true) {
-        setLoginStatus(response.data.user[0].username);
-      }
-    });
-  }, []);
-
   return (
-    <div className="Register">
-      <div className="registration">
-        <h1>Registration</h1>
-        <label>Username</label>
-        <input
-          type="text"
-          onChange={(e) => {
-            setUsernameReg(e.target.value);
-          }}
-        />
-        <label>Password</label>
-        <input
-          type="text"
-          onChange={(e) => {
-            setPasswordReg(e.target.value);
-          }}
-        />
-        <button onClick={register}> Register </button>
-      </div>
-
-      <div className="login">
-        <h1>Login</h1>
-        <input
-          type="text"
-          placeholder="Enter Username"
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        />
-        <input
-          type="password"
-          placeholder="Enter Password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <button onClick={login}> Login </button>
-      </div>
-
-      <h1>{loginStatus}</h1>
+    <div className="registration">
+      <h1>Registration</h1>
+      <label>Username</label>
+      <input
+        type="text"
+        onChange={(e) => {
+          setUsernameReg(e.target.value);
+        }}
+      />
+      <label>Password</label>
+      <input
+        type="text"
+        onChange={(e) => {
+          setPasswordReg(e.target.value);
+        }}
+      />
+      <button onClick={register}> Register </button>
     </div>
   );
 }

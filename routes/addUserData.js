@@ -17,11 +17,11 @@ exports.addUser = function (user) {
   return pool
     .query(
       `
-    INSERT INTO users (first_name, last_name, email, password)
+    INSERT INTO users (first_name, last_name, username, email, password)
     VALUES ($1, $2, $3, $4)
     RETURNING *;
   `,
-      [user.first_name, user.last_name, user.email, user.password]
+      [user.first_name, user.last_name, user.username, user.email, user.password]
     )
     .then((result) => {
       return result.rows[0];

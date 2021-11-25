@@ -2,16 +2,16 @@ import "./App.css";
 import axios from "axios";
 import { React, useEffect, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+
 // Component Routes
 // import Home from "./components/Home";
 // import About from "./components/About";
 // import Register from "./components/Register";
-import Watchlist from "./components/Watchlist";
-import Hotlist from "./components/Hotlist";
-import Stockscreen from "./components/Stockscreen";
-import StockPredict from "./components/Stockpredict";
-import Users from "./components/Users";
-import Login from "./components/login";
+// import Watchlist from "./components/Watchlist";
+// import Hotlist from "./components/Hotlist";
+// import Stockscreen from "./components/Stockscreen";
+// import StockPredict from "./components/Stockpredict";
+// import Users from "./components/Users";
 
 function App() {
   return (
@@ -21,6 +21,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
+        <Route path="Register" element={} />
+        <Route path="Login" element={} />
       </Routes>
 
     </div>
@@ -31,7 +33,7 @@ function Home() {
   return (
     <>
       <main>
-        <h2>Welcome to Upswing!</h2>
+        <h1>Welcome to Upswing!</h1>
       </main>
       <nav>
         <Link to="/about">About</Link>
@@ -53,5 +55,7 @@ function About() {
     </>
   );
 }
+
+
 
 export default App;
