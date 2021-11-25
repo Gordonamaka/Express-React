@@ -1,17 +1,17 @@
 import "./App.css";
-import * as React from "react";
+import axios from "axios";
+import { React, useEffect, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 // Component Routes
-import Users from "./components/Users";
 // import Home from "./components/Home";
-import Login from "./components/login";
 // import About from "./components/About";
+// import Register from "./components/Register";
 import Watchlist from "./components/Watchlist";
-import Register from "./components/Register";
 import Hotlist from "./components/Hotlist";
 import Stockscreen from "./components/Stockscreen";
 import StockPredict from "./components/Stockpredict";
-import MyForm from "./MyForm";
+import Users from "./components/Users";
+import Login from "./components/login";
 
 function App() {
   return (
@@ -23,15 +23,6 @@ function App() {
         <Route path="about" element={<About />} />
       </Routes>
 
-   
-      {/* <Register /> */}
-      {/* <Login /> */}
-    
-      {/* <Stockscreen /> */}
-      {/* <StockPredict /> */}
-      
-      <h2>How to Add Custom Validatin with Forms in React</h2>
-      <MyForm />
     </div>
   );
 }
@@ -40,8 +31,7 @@ function Home() {
   return (
     <>
       <main>
-        <h2>Welcome to the homepage!</h2>
-        <p>You can do this, I believe in you.</p>
+        <h2>Welcome to Upswing!</h2>
       </main>
       <nav>
         <Link to="/about">About</Link>
@@ -55,10 +45,7 @@ function About() {
     <>
       <main>
         <h2>Who are we?</h2>
-        <p>
-          That feels like an existential question, don't you
-          think?
-        </p>
+        <p>We are tech entrepreneur's that aim to make understanding and viewing the stock market easy and accessible to everyone!</p>
       </main>
       <nav>
         <Link to="/">Home</Link>

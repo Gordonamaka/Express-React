@@ -4,10 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
+import Reg from "./components/Register"
+import Navigation from "./components/Nav"
 
 ReactDOM.render(
   <BrowserRouter>
+    <Navigation />
     <App />
+    <Reg />
   </BrowserRouter>,
   document.getElementById('root')
 );
