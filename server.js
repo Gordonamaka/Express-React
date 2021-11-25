@@ -48,6 +48,14 @@ const watchlistRoute = require("./routes/watchlistRoute");
 //stock screen endpoint
 const stockScreenRoute = require("./routes/stockScreenPageRoute");
 
+//Weekly stock route
+const weeklyRoute = require("./routes/weeklyRoute");
+app.use("/api/weekly", weeklyRoute);
+
+//monthly stock route
+const monthlyRoute = require("./routes/monthlyRoute");
+a
+
 //stock predicting endpoint
 const stockPredictRoute = require("./routes/stockPredictionRoute");
 
@@ -55,86 +63,6 @@ const stockPredictRoute = require("./routes/stockPredictionRoute");
 //login Route
 const loginRoute = require("./routes/loginRoute");
 
-/*
-app.get("/login", (req, res) => {
-  if (req.session.user) {
-    res.send({ loggedIn: true, user: req.session.user });
-  }
-});  
-
-const verifyJWT = (req, res, next) => {
-  if (!token) {
-    res.send("Something went wrong, please try again.");
-  } else {
-    jwt.verify(token, 'letsgoupswing', (err, decoded) => {
-      if (err) {
-        res.json({auth: false, message: "You failed to be authorized."});
-      } else {
-        req.userId = decoded.id
-        next();
-      }
-    });
-  }; 
-};
-
-app.get("/isUserAuth", verifyJWT, (req, res) => {
-  res.send('Congragulations! You have been verified!');
-})
-
-app.post("/login", (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  
-  db.query(
-    "SELECT * FROM users WHERE email = ?;",
-    username,
-    (err, result) => {
-      if (err) {
-        res.send({ err: err });
-      }
-      // Length Error
-      if (result.length > 0) {
-        bcrypt.compare(password, result[0].password, (error, response) => {
-          if (response) {
-            const id = result[0].id
-            const token = jwt.sign({id}, "letsgoupswing",  )
-            req.session.user = result;
-            console.log(req.session.user);
-            res.json({auth: true, token: token, result: result});
-          } else {
-            res.send({ message: "Wrong username/password combination!" });
-          }
-        });
-      } else {
-        res.send({ message: "User doesn't exist" });
-      }
-    }
-    );
-  }); */
-  
-  // For password hashing
-  const saltrounds = 10;
-  
-  //register endpoint
-  const registerRoute = require("./routes/registerRoute");
-  app.post("/register", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-    
-    bcrypt.hash(password, saltrounds, (err, hash) => {
-      if (err) {
-        console.log(err);
-      }
-      
-      db.query(
-        "INSERT INTO users (username, password) VALUES (?,?)",
-        [username, hash],
-        (err, result) => {
-          console.log(err);
-        }
-        );
-      });
-    }); 
 
 app.use("/", homepageRoute);
 app.use("/api/login", loginRoute);

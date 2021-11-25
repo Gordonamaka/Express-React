@@ -1,5 +1,7 @@
 const { default: axios } = require("axios");
 const { dailyDbInsertLooper } = require("../helpers/dbInsertLooper");
+const { weeklyInsertLooper } = require("../helpers/weeklyInsertLooper");
+const { monthlyInsertLooper } = require("../helpers/monthlyInsertLooper");
 // const {  } = require("../helpers/stockDataParser");
 
 //Ticker is input into front end, posted to API, fetched by backend, set here. Ask mentor?
@@ -16,10 +18,16 @@ exports.fetchStockData = () => {
     axios.get(monthlyUrl),
   ])
     .then((res) => {
-      const data = res[0].data;
-      dailyDbInsertLooper(data);
+      const dailyData = res[0].data;
+      const weeklyData = res[1].data;
+      const monthlyData = res[2].data;
+
+    console.log("Now calling weekly insert loop")
+      dailyDbInsertLooper(dailyData);
+     console.log("Now calling weekly insert loop");
+      weeklyInsertLooper(weeklyData);
     })
     .catch((error) => {
       console.log(error);
     });
-};
+}; 
