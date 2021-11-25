@@ -11,6 +11,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -25,8 +26,6 @@ app.use(
   })
 );
 
-// For password hashing
-const rounds = 10;
 
 //call to database.js
 const database = require("./routes/database");
@@ -36,8 +35,6 @@ const userRoutes = require("./routes/usersRoute");
 
 // API endpoint - /api/about
 const aboutRoutes = require("./routes/aboutPageRoute");
-
-
 
 //homepage endpoint
 const homepageRoute = require("./routes/homePageRoute");
@@ -57,6 +54,8 @@ const stockPredictRoute = require("./routes/stockPredictionRoute");
 
 //login Route
 const loginRoute = require("./routes/loginRoute");
+
+/*
 app.get("/login", (req, res) => {
   if (req.session.user) {
     res.send({ loggedIn: true, user: req.session.user });
@@ -85,7 +84,7 @@ app.get("/isUserAuth", verifyJWT, (req, res) => {
 app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-
+  
   db.query(
     "SELECT * FROM users WHERE email = ?;",
     username,
@@ -110,30 +109,32 @@ app.post("/login", (req, res) => {
         res.send({ message: "User doesn't exist" });
       }
     }
-  );
-});
-
-
-//register endpoint
-const registerRoute = require("./routes/registerRoute");
-app.post("/register", (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-
-  bcrypt.hash(password, rounds, (err, hash) => {
-    if (err) {
-      console.log(err);
-    }
-
-    db.query(
-      "INSERT INTO users (username, password) VALUES (?,?)",
-      [username, hash],
-      (err, result) => {
+    );
+  }); */
+  
+  // For password hashing
+  const saltrounds = 10;
+  
+  //register endpoint
+  const registerRoute = require("./routes/registerRoute");
+  app.post("/register", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    
+    bcrypt.hash(password, saltrounds, (err, hash) => {
+      if (err) {
         console.log(err);
       }
-    );
-  });
-});
+      
+      db.query(
+        "INSERT INTO users (username, password) VALUES (?,?)",
+        [username, hash],
+        (err, result) => {
+          console.log(err);
+        }
+        );
+      });
+    }); 
 
 app.use("/", homepageRoute);
 app.use("/api/login", loginRoute);

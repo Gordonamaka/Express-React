@@ -12,19 +12,34 @@ import { Routes, Route, Link } from "react-router-dom";
 // import Stockscreen from "./components/Stockscreen";
 // import StockPredict from "./components/Stockpredict";
 // import Users from "./components/Users";
+import { Login } from "./components/Login";
 
 function App() {
+  
+  //Logout setup (REMEMBER LOGIN AUTH IS ONLY FOR WHETHER THE USER IS LOGGED IN OR NOT; Logged in? show username + logout button : show Register button or form...)
+  // const [auth, setAuth] = useState(false);
+  // const [user, setUser] = useState(null);
+  // const logout = function() {
+  //   setAuth(false);
+  //   setUser(null);
+  // }
+  
   return (
     <div className="App">
       <h1> Stock Screener/Predictor!</h1>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} /> 
         <Route path="about" element={<About />} />
-        <Route path="Register" element={} />
-        <Route path="Login" element={} />
+        {/* <Route path="Register" element={<Reg />} /> */}
+        <Route path="Login" exact render={(props) => <Login />} />
       </Routes>
 
+
+      {/* Identifies whether user is logged in or not */}
+      {/* {!auth && <Login login={login}/>} */}
+      {/* {auth && <Logout logout={logout} user={user} />}   */}
+    
     </div>
   );
 }

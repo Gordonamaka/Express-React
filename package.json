@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
+    "bcrypt-salt": "^1.1.9",
     "body-parser": "^1.19.0",
     "chalk": "^4.1.2",
     "concurrently": "^6.4.0",
