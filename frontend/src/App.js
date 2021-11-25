@@ -12,7 +12,7 @@ import { Routes, Route, Link } from "react-router-dom";
 // import Stockscreen from "./components/Stockscreen";
 // import StockPredict from "./components/Stockpredict";
 // import Users from "./components/Users";
-import { Login } from "./components/Login";
+import Login from "./components/Login";
 
 function App() {
   

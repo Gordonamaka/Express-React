@@ -14,10 +14,10 @@ const pool = new Pool({
 //**************LOGIN ROUTERS**********************************
 
 //Get request to login page/form
-router.get("/login", (req, res) => {
-  if (req.session.user) {
-    res.send({ loggedIn: true, user: req.session.user });
-  }
+router.get("/", (req, res) => {
+  //if (req.session.user) {
+   // res.send({ loggedIn: true, user: req.session.user }); }
+  res.json("hahahahahahahaha gotcha! router.get for login? We work! Maybe...")
 });  
 
 //function used to verify whether JWT token was placed, works with "/api/isUserAuth" get below, kinda pointless unless we make use of it
@@ -41,7 +41,7 @@ router.get("/isUserAuth", verifyJWT, (req, res) => {
 })
 
 //LOGIN POST for authenticating user trying to login
-router.post("/login", (req, res) => {
+router.post("/", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   

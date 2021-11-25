@@ -4,18 +4,18 @@ import axios from "axios";
 
 // Things to context: You need the auth, login status, logout. (Figure out if auth and login status are the same).
 
-export function Login(props) {
+export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
   // Needs context or replace with auth/setAuth to show/replace login/register buttons(Tenary Operators)
   const [loginStatus, setLoginStatus] = useState(false);
 
-  // Also require onSubmit for the Register button
+  /* Also require onSubmit for the Register button
   const onSubmit = function (event) {
     event.preventDefault();
     email && props.login(email, password);
-  };
+  }; */
   
   const login = () => {
      axios
@@ -45,7 +45,7 @@ export function Login(props) {
     <div className="login">
       <h1>Login</h1>
       {/* HERE LIES THE LOGIN SUBMIT FORM */}
-      <form onSubmit={onSubmit}>
+      <form>
         <p>
         <input
           type="text"

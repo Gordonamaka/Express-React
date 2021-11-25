@@ -21,16 +21,16 @@ export default function Registration(props) {
   };
 
   // Yet to implement
-  // const register = () => {
-  //   axios
-  //     .post("http://localhost:3001/api/register", {
-  //       username: username,
-  //       password: password,
-  //     })
-  //     .then((response) => {
-  //       console.log(response);
-  //     });
-  // };
+  const register = () => {
+    axios
+      .post("http://localhost:3001/api/register", {
+        username: username,
+        password: password,
+      })
+      .then((response) => {
+         console.log(response);
+      });
+   };
 
   return (
     <div className="registration">

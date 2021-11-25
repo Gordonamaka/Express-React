@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import Reg from "./components/Register"
 import Navigation from "./components/Nav"
+import Login from "./components/Login"
 
 // Insert Page renders for the DOM
 
@@ -14,6 +15,7 @@ ReactDOM.render(
     <Navigation />
     <App />
     <Reg />
+    <Login />
   </BrowserRouter>,
   document.getElementById('root')
 );
