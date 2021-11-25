@@ -11,35 +11,42 @@ export default function Login(props) {
   // Needs context or replace with auth/setAuth to show/replace login/register buttons(Tenary Operators)
   const [loginStatus, setLoginStatus] = useState(false);
 
+
+
   /* Also require onSubmit for the Register button
   const onSubmit = function (event) {
     event.preventDefault();
     email && props.login(email, password);
   }; */
   
-  const login = () => {
-     axios
-       .post("http://localhost:3001/api/login", {
-         email: email,
-         password: password
+  // axios.post("http://localhost:3001/api/login", {withCredentials: true});
+
+
+  function handleLogin() {
+    console.log(handleLogin)
+    axios
+      .post("http://localhost:3001/api/login", {
+        email: email,
+        password: password
       })
-       .then((response) => {
-         if (!response.data.message) {
-           setLoginStatus(false);
-         } else {
-           setLoginStatus(true);
-         }
-       });
-   };
+      .then((response) => {
+        console.log(response.data);
+        if (!response.data.message) {
+          setLoginStatus(false);
+        } else {
+          setLoginStatus(true);
+        }
+      });
+  }
 
   // Waiting to implement Database/Server connection (Ali)
-   useEffect(() => {
-    axios.get("http://localhost:3001/api/login").then((response) => {
-      if (response.data.loggedIn === true) {
-        setLoginStatus(response.data.user[0].username);
-      }
-     });
-   }, []);
+  //  useEffect(() => {
+  //   axios.get("http://localhost:3001/api/login").then((response) => {
+  //     if (response.data.loggedIn === true) {
+  //       setLoginStatus(response.data.user[0].username);
+  //     }
+  //    });
+  //  }, []);
 
   return (
     <div className="login">
@@ -55,7 +62,6 @@ export default function Login(props) {
           // (e) means event
           onChange={(e) => {
             setEmail(e.target.value);
-            // setUsername(e.target.value);
           }}
           />
         </p>
@@ -70,9 +76,9 @@ export default function Login(props) {
           }}
           />
         </p>
-        <button onClick={login}> Login </button>
         <h1>{loginStatus}</h1>
       </form>
+        <button onClick={handleLogin}> Login </button>
     </div>
   );
 }

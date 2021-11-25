@@ -7,25 +7,24 @@ export default function Registration(props) {
 
   const [password, setPassword] = useState("");
 
-  const [first_Name, setFirst_Name] = useState("");
+  const [first_name, setFirst_name] = useState("");
 
-  const [last_Name, setLast_Name] = useState("");
+  const [last_name, setLast_name] = useState("");
 
   const [email, setEmail] = useState("");
 
-  axios.defaults.withCredentials = true;
   // ATTENTION: CAMEL CASE THE SCHEMA FOR FIRST_NAME, LAST_NAME
-  const onSubmit = function (event) {
-    event.preventDefault();
-    email && props.Register(email, username, first_Name, last_Name, password);
-  };
+  // const onSubmit = function (event) {
+  //   event.preventDefault();
+  //   email && props.Register(email, username, first_Name, last_Name, password);
+  // };
 
   // Yet to implement
   const register = () => {
     axios
       .post("http://localhost:3001/api/register", {
-        first_Name: first_Name,
-        last_Name: last_Name,
+        first_name: first_name,
+        last_name: last_name,
         username: username,
         email: email,
         password: password,
@@ -38,7 +37,7 @@ export default function Registration(props) {
   return (
     <div className="registration">
       <h1>Registration</h1>
-      <form onSubmit={onSubmit}>
+      <form>
         <p>
           <label>Username</label>
           <input
@@ -55,9 +54,9 @@ export default function Registration(props) {
           <input
             type="text"
             name="first_name"
-            value={first_Name}
+            value={first_name}
             onChange={(e) => {
-              setFirst_Name(e.target.value);
+              setFirst_name(e.target.value);
             }}
           />
         </p>
@@ -66,9 +65,9 @@ export default function Registration(props) {
           <input
             type="text"
             name="last_name"
-            value={last_Name}
+            value={last_name}
             onChange={(e) => {
-              setLast_Name(e.target.value);
+              setLast_name(e.target.value);
             }}
           />
         </p>
@@ -94,8 +93,8 @@ export default function Registration(props) {
             }}
           />
         </p>
-        <button onClick={register}> Register </button>
       </form>
+      <button onClick={register}> Register </button>
     </div>
   );
 }

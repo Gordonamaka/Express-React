@@ -27,11 +27,16 @@ function Navigation() {
                   Watchlist
                 </NavLink>
               </li>
+
+              {/* Add in fragment for the login status after connecting the login */}
+
               <li className="nav-item">
                 <NavLink className="nav-link" to="/Profile">
                   Profile
                 </NavLink>
               </li>
+
+
             </ul>
           </div>
         </div>
