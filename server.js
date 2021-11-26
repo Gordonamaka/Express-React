@@ -10,10 +10,13 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
-app.use(cors());
+app.use(cors({
+  credentials: true, 
+  origin: "http://localhost:3000"
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -25,7 +28,6 @@ app.use(
     keys: ["KeyBladeSora"],
   })
 );
-
 
 //call to database.js
 const database = require("./routes/database");

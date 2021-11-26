@@ -7,92 +7,94 @@ export default function Registration(props) {
 
   const [password, setPassword] = useState("");
 
-  const [first_Name, setFirst_Name] = useState("");
+  const [first_name, setFirst_name] = useState("");
 
-  const [last_Name, setLast_Name] = useState("");
+  const [last_name, setLast_name] = useState("");
 
   const [email, setEmail] = useState("");
 
-  axios.defaults.withCredentials = true;
   // ATTENTION: CAMEL CASE THE SCHEMA FOR FIRST_NAME, LAST_NAME
-  const onSubmit = function (event) {
-    event.preventDefault();
-    email && props.Register(email, username, first_Name, last_Name, password);
-  };
+  // const onSubmit = function (event) {
+  //   event.preventDefault();
+  //   email && props.Register(email, username, first_Name, last_Name, password);
+  // };
 
   // Yet to implement
   const register = () => {
     axios
       .post("http://localhost:3001/api/register", {
+        first_name: first_name,
+        last_name: last_name,
         username: username,
+        email: email,
         password: password,
       })
       .then((response) => {
-         console.log(response);
+        console.log(response);
       });
-   };
+  };
 
   return (
     <div className="registration">
       <h1>Registration</h1>
-      <form onSubmit={onSubmit}>
-        <p> 
-        <label>Username</label>
-        <input
-          type="text"
-          value={username}
-          name="username"
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-          />
-        </p>
-        <p> 
-        <label>First name</label>
-        <input
-          type="text"
-          name="first_name"
-          value={first_Name}
-          onChange={(e) => {
-            setFirst_Name(e.target.value);
-          }}
+      <form>
+        <p>
+          <label>Username</label>
+          <input
+            type="text"
+            value={username}
+            name="username"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
           />
         </p>
         <p>
-        <label>Last name</label>
-        <input
-          type="text"
-          name="last_name"
-          value={last_Name}
-          onChange={(e) => {
-            setLast_Name(e.target.value);
-          }}
+          <label>First name</label>
+          <input
+            type="text"
+            name="first_name"
+            value={first_name}
+            onChange={(e) => {
+              setFirst_name(e.target.value);
+            }}
           />
         </p>
         <p>
-        <label>Email</label>
-        <input
-          type="text"
-          name="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
+          <label>Last name</label>
+          <input
+            type="text"
+            name="last_name"
+            value={last_name}
+            onChange={(e) => {
+              setLast_name(e.target.value);
+            }}
           />
         </p>
-        <p> 
-        <label>Password</label>
-        <input
-          type="text"
-          name="password"
-          value="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+        <p>
+          <label>Email</label>
+          <input
+            type="text"
+            name="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
         </p>
-        <button onClick={register}> Register </button>
+        <p>
+          <label>Password</label>
+          <input
+            type="text"
+            name="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+        </p>
       </form>
+      <button onClick={register}> Register </button>
     </div>
   );
 }
