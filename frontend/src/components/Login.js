@@ -10,27 +10,21 @@ export default function Login(props) {
   
   // Needs context or replace with auth/setAuth to show/replace login/register buttons(Tenary Operators)
   const [loginStatus, setLoginStatus] = useState(false);
-
-
-
   /* Also require onSubmit for the Register button
   const onSubmit = function (event) {
     event.preventDefault();
     email && props.login(email, password);
   }; */
   
-  // axios.post("http://localhost:3001/api/login", {withCredentials: true});
-
 
   function handleLogin() {
-    console.log(handleLogin)
     axios
       .post("http://localhost:3001/api/login", {
         email: email,
         password: password
       })
       .then((response) => {
-        console.log(response.data);
+        console.log("Login Response", response.data);
         if (!response.data.message) {
           setLoginStatus(false);
         } else {

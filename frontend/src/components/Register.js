@@ -13,7 +13,7 @@ export default function Registration(props) {
 
   const [email, setEmail] = useState("");
 
-  // ATTENTION: CAMEL CASE THE SCHEMA FOR FIRST_NAME, LAST_NAME
+  // ATTENTION: Implement
   // const onSubmit = function (event) {
   //   event.preventDefault();
   //   email && props.Register(email, username, first_Name, last_Name, password);
@@ -30,8 +30,10 @@ export default function Registration(props) {
         password: password,
       })
       .then((response) => {
-        console.log(response);
-      });
+        console.log("Register Response", response);
+      })//.error((err) => {
+      //   console.log("ERROR!", err);
+      // })
   };
 
   return (

@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express();
 const database = require("./database");
-const { response } = require("express");
 const { Pool } = require("pg");
-const { route } = require("./aboutPageRoute");
 
 const pool = new Pool({
   user: "labber",
@@ -13,12 +11,12 @@ const pool = new Pool({
 });
 
 router.get("/", (req, res) => {
-  let dailyquery = `SELECT * FROM daily_stock_data ORDER BY id`;
+  let balanceSheetQuery = `SELECT * FROM balance_sheet ORDER BY id`;
   pool
-    .query(dailyquery)
+    .query(balanceSheetQuery)
     .then((data) => {
-      const dailyData = data.rows;
-      res.json({ data: dailyData });
+      const balanceData = data.rows;
+      res.json({ data: balanceData });
       console.log("bingo!");
     })
     .catch((err) => {

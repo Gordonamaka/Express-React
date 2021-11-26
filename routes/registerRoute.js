@@ -29,6 +29,8 @@ router.post("/", (req, res) => {
   const last_name = req.body.last_name;
   const email = req.body.email;
   const password = req.body.password;
+  
+  // Yet to implement: if email already exists, send error...
 
   bcrypt
     .hash(password, saltrounds)
@@ -37,7 +39,7 @@ router.post("/", (req, res) => {
         `INSERT INTO users (first_name, last_name, username, email, password) VALUES ('${first_name}', '${last_name}', '${username}', '${email}', '${hash}')`
       )
         .then((result) => {
-          console.log(result);
+          console.log("Data input successful", result.rows);
         })
         .catch((err) => {
           console.log(err);
