@@ -6,7 +6,7 @@ const { monthlyInsertLooper } = require("../helpers/monthlyInsertLooper");
 
 //Ticker is input into front end, posted to API, fetched by backend, set here. Ask mentor?
 const apiKey = "process.env.API_KEY";
-const ticker = "IBM";
+const ticker = "IBM"; //need to make it a variable whose value is passed down
 const dailyUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${ticker}&apikey=${apiKey}`;
 const weeklyUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=${ticker}&apikey=${apiKey}`;
 const monthlyUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol=${ticker}&apikey=${apiKey}`;
@@ -17,16 +17,16 @@ exports.fetchStockData = () => {
     axios.get(weeklyUrl),
     axios.get(monthlyUrl),
   ])
-    .then((res) => {
-      const dailyData = res[0].data;
-      const weeklyData = res[1].data;
-      const monthlyData = res[2].data;
+  .then((res) => {
+    const dailyData = res[0].data;
+    const weeklyData = res[1].data;
+    const monthlyData = res[2].data;
 
-      dailyDbInsertLooper(dailyData);
-      weeklyInsertLooper(weeklyData);
-      monthlyInsertLooper(monthlyData);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    dailyDbInsertLooper(dailyData);
+   // weeklyInsertLooper(weeklyData);
+   // monthlyInsertLooper(monthlyData);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 }; 

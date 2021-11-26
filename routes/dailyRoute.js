@@ -20,7 +20,6 @@ router.get("/", (req, res) => {
     .then((data) => {
       const dailyData = data.rows;
       res.json({ data: dailyData });
-      console.log("bingo!");
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });

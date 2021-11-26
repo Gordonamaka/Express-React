@@ -1,5 +1,6 @@
 const { response } = require("express");
 const { Pool } = require("pg");
+const { default: axios } = require("axios");
 
 const pool = new Pool({
   user: "labber",
@@ -17,7 +18,8 @@ const pool = new Pool({
  * @return {Promise<{}>} A promise to the user.
  */
 exports.addDailyStockData = function (ticker, interval, time, intervalData) {
-  return pool
+
+    return pool
     .query(
       `
       INSERT INTO daily_stock_data (ticker, interval, time, open, high, low, close, adjusted_close, volume, dividend_amount, split_coefficient)
@@ -44,7 +46,23 @@ exports.addDailyStockData = function (ticker, interval, time, intervalData) {
     .catch((err) => {
       console.log("addDailyData error = " + err.message);
     });
-};
+}
+
+/**
+ * Delete Daily Adjusted Stock timeseries for a given ticker
+ * Gotta make the schema match the params
+ * @param {{ticker: string}}
+ * @return {Promise<{}>} A promise to the user.
+ */
+exports.deleteDailyStockData = function (ticker) {
+  return pool
+  .query(
+    `DELETE FROM daily_stock_data
+    WHERE ticker LIKE $1;
+    `,
+    [ticker]
+  )
+}
 
 /**
  * Add a new user

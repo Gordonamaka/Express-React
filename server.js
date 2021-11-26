@@ -64,7 +64,6 @@ const registerRoute = require("./routes/registerRoute")
 //login Route
 const loginRoute = require("./routes/loginRoute");
 
-
 app.use("/", homepageRoute);
 app.use("/api/daily", dailyRoute);
 app.use("/api/login", loginRoute);
