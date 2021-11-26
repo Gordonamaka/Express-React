@@ -13,10 +13,12 @@ const cookieSession = require("cookie-session");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-app.use(cors({
-  credentials: true, 
-  origin: "http://localhost:3000"
-}));
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+  })
+);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -59,10 +61,21 @@ const monthlyRoute = require("./routes/monthlyRoute");
 //stock predicting endpoint
 const stockPredictRoute = require("./routes/stockPredictionRoute");
 
-const registerRoute = require("./routes/registerRoute")
+//Register Route
+const registerRoute = require("./routes/registerRoute");
 
 //login Route
 const loginRoute = require("./routes/loginRoute");
+
+// Company Overview Route
+const companyOverview = require("./routes/companyOverviewRoute")
+app.use("/api/companyOverview", companyOverview)
+
+// Balance Sheet Route
+const balanceSheet = require("./routes/balanceSheetRoute")
+app.use("/api/balanceSheet", balanceSheet)
+
+
 
 
 app.use("/", homepageRoute);
