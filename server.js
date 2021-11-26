@@ -45,33 +45,34 @@ const hotlistRoute = require("./routes/hotlistPageRoute");
 //watchlist endpoint
 const watchlistRoute = require("./routes/watchlistRoute");
 
-//stock screen endpoint
-const stockScreenRoute = require("./routes/stockScreenPageRoute");
+//daily stock route
+const dailyRoute = require("./routes/dailyRoute");
 
 //Weekly stock route
 const weeklyRoute = require("./routes/weeklyRoute");
-app.use("/api/weekly", weeklyRoute);
 
 //monthly stock route
 const monthlyRoute = require("./routes/monthlyRoute");
-a
 
 //stock predicting endpoint
 const stockPredictRoute = require("./routes/stockPredictionRoute");
 
+const registerRoute = require("./routes/registerRoute")
 
 //login Route
 const loginRoute = require("./routes/loginRoute");
 
 
 app.use("/", homepageRoute);
+app.use("/api/daily", dailyRoute);
 app.use("/api/login", loginRoute);
 app.use("/api/users", userRoutes);
 app.use("/api/about", aboutRoutes);
+app.use("/api/weekly", weeklyRoute);
+app.use("/api/monthly", monthlyRoute);
 app.use("/api/hotlist", hotlistRoute);
 app.use("/api/register", registerRoute);
 app.use("/api/watchlist", watchlistRoute);
-app.use("/api/stockscreen", stockScreenRoute);
 app.use("/api/stock-predict", stockPredictRoute);
 app.use("/api/", require("./routes/apiRoute"));
 

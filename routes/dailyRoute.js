@@ -28,20 +28,5 @@ router.get("/", (req, res) => {
   return router;
 });
 
-// For weekly Stocks
-router.get("/", (req, res) => {
-  let weeklyquery = `SELECT * FROM weekly_stock_data ORDER BY id`;
-  pool
-    .query(weeklyquery)
-    .then((data) => {
-      const weeklyData = data.rows;
-      res.json({ data: weeklyData });
-      console.log("bingo!");
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
-  return router;
-});
 
 module.exports = router;

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const Stockscreen = () => {
     useEffect(() => {
-      axios.get('http://localhost:3001/api/stockscreen')
+      axios.get('http://localhost:3001/api/daily')
         .then((data) => {
           console.log("data", data.data);
           setState(data.data);

@@ -22,10 +22,9 @@ exports.fetchStockData = () => {
       const weeklyData = res[1].data;
       const monthlyData = res[2].data;
 
-    console.log("Now calling weekly insert loop")
       dailyDbInsertLooper(dailyData);
-     console.log("Now calling weekly insert loop");
       weeklyInsertLooper(weeklyData);
+      monthlyInsertLooper(monthlyData);
     })
     .catch((error) => {
       console.log(error);
