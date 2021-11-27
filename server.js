@@ -58,8 +58,8 @@ const weeklyRoute = require("./routes/weeklyRoute");
 //monthly stock route
 const monthlyRoute = require("./routes/monthlyRoute");
 
-//stock predicting endpoint
-const stockPredictRoute = require("./routes/stockPredictionRoute");
+//stock Screening endpoint
+const stockScreenRoute = require("./routes/stockScreenRoute");
 
 //Register Route
 const registerRoute = require("./routes/registerRoute");
@@ -88,7 +88,7 @@ app.use("/api/monthly", monthlyRoute);
 app.use("/api/hotlist", hotlistRoute);
 app.use("/api/register", registerRoute);
 app.use("/api/watchlist", watchlistRoute);
-app.use("/api/stock-predict", stockPredictRoute);
+app.use("/api/stock-screen", stockScreenRoute);
 app.use("/api/", require("./routes/apiRoute"));
 
 app.listen(PORT, () => {

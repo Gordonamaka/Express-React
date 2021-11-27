@@ -1,7 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Search from "./Search";
+import SearchBar from "./Search";
 
-function Navigation() {
+export default function Navigation() {
   return (
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -29,6 +31,8 @@ function Navigation() {
               </li>
 
               {/* Add in fragment for the login status after connecting the login */}
+              
+                <Search />
 
               <li className="nav-item">
                 <NavLink className="nav-link" to="/Profile">
@@ -44,5 +48,3 @@ function Navigation() {
     </div>
   );
 }
-
-export default Navigation;

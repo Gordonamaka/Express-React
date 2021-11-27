@@ -4,6 +4,8 @@ const { deleteDailyStockData} = require("../routes/database");
 exports.dailyDbInsertLooper = function (data) {
   const ticker = data["Meta Data"]["2. Symbol"];
   const interval = Object.keys(data)[1];
+  console.log(interval)
+  
   const timeValues = Object.keys(data["Time Series (Daily)"]);
   const numOfTimeValues = timeValues.length;
 

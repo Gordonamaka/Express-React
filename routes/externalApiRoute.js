@@ -29,6 +29,7 @@ exports.fetchStockData = () => {
   ])
     .then((res) => {
       const dailyData = res[0].data;
+      console.log(dailyData)
       const weeklyData = res[1].data;
       const monthlyData = res[2].data;
       const companyData = res[3].data;

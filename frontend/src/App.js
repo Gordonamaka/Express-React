@@ -14,6 +14,7 @@ import { Routes, Route, Link } from "react-router-dom";
 // import Users from "./components/Users";
 import Login from "./components/Login";
 
+
 function App() {
   
   //Logout setup (REMEMBER LOGIN AUTH IS ONLY FOR WHETHER THE USER IS LOGGED IN OR NOT; Logged in? show username + logout button : show Register button or form...)
@@ -70,7 +71,5 @@ function About() {
     </>
   );
 }
-
-
 
 export default App;
